@@ -1,10 +1,11 @@
 import random
 import time
-from datetime import datetime
 
 from selenium import webdriver
+from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
 driver = webdriver.Firefox()
@@ -12,24 +13,23 @@ driver.implicitly_wait(time_to_wait=10)  # 요소 로딩까지 최대 10초까�
 driver.maximize_window()
 
 # CONSTANT
-EMAIL = 'abc@naver.com'
-PASSWORD = 'qwerty1!'
-NAME = 'kyd'
+EMAIL = 'answjd311@naver.com'
+PASSWORD = 'af!546852'
+NAME = '이담'
 GENDER = '남아'
 ADD_PERSON = '10인분'
 ADDRESS_REGION = '동백죽전대로 507'
 ADDRESS_DETAIL = '101동 703호'
 
-MOM_PHONE = '01012341234'
+MOM_PHONE = '01095156292'
 MOM_NAME = '엄마'
-PAPA_PHONE = '01056785678'
+PAPA_PHONE = '01047268401'
 PAPA_NAME = '아빠'
 
 # 3월 18일
-TABLE_POS = '/html/body/section[2]/div/div/div[1]/div[2]/table/tbody/tr[5]/td[2]'
-TABLE_TEXT = "평일돌잔치"
-TABLE_TIME = "15:30 ~ 19:00"
-
+# TABLE_POS = '/html/body/section[2]/div/div/div[1]/div[2]/table/tbody/tr[5]/td[2]'
+# TABLE_TEXT = "평일돌잔치"
+# TABLE_TIME = "15:30 ~ 19:00"
 
 # 3월 8일
 # TABLE_POS = '/html/body/section[2]/div/div/div[1]/div[2]/table/tbody/tr[3]/td[6]'
@@ -39,20 +39,28 @@ TABLE_TIME = "15:30 ~ 19:00"
 # 3월 15일
 # TABLE_POS = '/html/body/section[2]/div/div/div[1]/div[2]/table/tbody/tr[4]/td[6]'
 # TABLE_TEXT = "영빈관"
-
+# TABLE_TIME = "10:00 ~ 13:30"
 
 # 3월 25일
 # TABLE_POS = '/html/body/section[2]/div/div/div[1]/div[2]/table/tbody/tr[6]/td[2]'
 # TABLE_TEXT = "평일돌잔치"
 # TABLE_TIME = "10:00 ~ 13:30"
 
+# 4월 6일
+TABLE_POS = '/html/body/section[2]/div/div/div[1]/div[2]/table/tbody/tr[2]/td[7]'
+TABLE_TEXT = '하람관'
+TABLE_TIME = '10:00 ~ 13:30'
+
 
 # TODO: https://thewoomije.co.kr/reservation-step1.php?year=2024&month=5&type=party  로 바꿔야함
 def run_macro():
-    driver.get('https://thewoomije.co.kr/reservation-step1.php?year=2024&month=3&type=party')
+    # driver.get('https://thewoomije.co.kr/reservation-step1.php?year=2024&month=3&type=party')  # 3월
+    driver.get('https://thewoomije.co.kr/reservation-step1.php?year=2024&month=4&type=party')  # 4월
+    # driver.get('https://thewoomije.co.kr/reservation-step1.php?year=2024&month=5&type=party')  # 5월
 
     retry_flag = True
     while True:
+        print("TRY TO CHOOSE PLACE")
         march_8 = driver.find_element(By.XPATH, TABLE_POS)
         march_8.click()
 
@@ -75,13 +83,14 @@ def run_macro():
         if not retry_flag:
             break
         else:
-            time.sleep(random.uniform(0.1, 0.3))
+            # time.sleep(random.uniform(0.1, 0.11))
             driver.refresh()
 
     wait = WebDriverWait(driver, 10)
     submit_btn = wait.until(expected_conditions.element_to_be_clickable((By.ID, 'submitBtn')))
     submit_btn.click()
 
+    ######## 여기서부터는 사소함
     # 5분 어쩌고 하는거 확인 누르기
     # alert = Alert(driver)
     alert = wait.until(expected_conditions.alert_is_present())
@@ -186,8 +195,5 @@ def run_macro():
 
 
 if __name__ == '__main__':
-
-    while datetime.now() < datetime(2023, 12, 14, 17, 26):
-        time.sleep(1)
-
+    print("LETS GO!")
     run_macro()
