@@ -60,7 +60,6 @@ def run_macro():
 
     retry_flag = True
     while True:
-        print("TRY TO CHOOSE PLACE")
         march_8 = driver.find_element(By.XPATH, TABLE_POS)
         march_8.click()
 
