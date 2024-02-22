@@ -1,4 +1,3 @@
-import random
 import time
 
 from selenium import webdriver
@@ -26,28 +25,8 @@ MOM_NAME = '엄마'
 PAPA_PHONE = '01047268401'
 PAPA_NAME = '아빠'
 
-# 3월 18일
-# TABLE_POS = '/html/body/section[2]/div/div/div[1]/div[2]/table/tbody/tr[5]/td[2]'
-# TABLE_TEXT = "평일돌잔치"
-# TABLE_TIME = "15:30 ~ 19:00"
-
-# 3월 8일
-# TABLE_POS = '/html/body/section[2]/div/div/div[1]/div[2]/table/tbody/tr[3]/td[6]'
-# TABLE_TEXT = "하람관"
-# TABLE_TIME = "10:00 ~ 13:30"
-
-# 3월 15일
-# TABLE_POS = '/html/body/section[2]/div/div/div[1]/div[2]/table/tbody/tr[4]/td[6]'
-# TABLE_TEXT = "영빈관"
-# TABLE_TIME = "10:00 ~ 13:30"
-
-# 3월 25일
-# TABLE_POS = '/html/body/section[2]/div/div/div[1]/div[2]/table/tbody/tr[6]/td[2]'
-# TABLE_TEXT = "평일돌잔치"
-# TABLE_TIME = "10:00 ~ 13:30"
-
-# 4월 6일
-TABLE_POS = '/html/body/section[2]/div/div/div[1]/div[2]/table/tbody/tr[2]/td[7]'
+# 5월 11일
+TABLE_POS = '/html/body/section[2]/div/div/div[1]/div[2]/table/tbody/tr[3]/td[7]'
 TABLE_TEXT = '하람관'
 TABLE_TIME = '10:00 ~ 13:30'
 
@@ -55,10 +34,11 @@ TABLE_TIME = '10:00 ~ 13:30'
 # TODO: https://thewoomije.co.kr/reservation-step1.php?year=2024&month=5&type=party  로 바꿔야함
 def run_macro():
     # driver.get('https://thewoomije.co.kr/reservation-step1.php?year=2024&month=3&type=party')  # 3월
-    driver.get('https://thewoomije.co.kr/reservation-step1.php?year=2024&month=4&type=party')  # 4월
-    # driver.get('https://thewoomije.co.kr/reservation-step1.php?year=2024&month=5&type=party')  # 5월
+    # driver.get('https://thewoomije.co.kr/reservation-step1.php?year=2024&month=4&type=party')  # 4월
+    driver.get('https://thewoomije.co.kr/reservation-step1.php?year=2024&month=5&type=party')  # 5월
 
     retry_flag = True
+
     while True:
         march_8 = driver.find_element(By.XPATH, TABLE_POS)
         march_8.click()
